@@ -1,4 +1,12 @@
-# VolumeSilencer
+<p align="center">
+  <img src="assets/brand-mark.svg" alt="VolumeSilencer logo" width="132">
+</p>
+
+<h1 align="center">VolumeSilencer</h1>
+
+<p align="center">
+  Private page-volume and tab-mute controls in a compact browser widget.
+</p>
 
 VolumeSilencer is a private, local-only browser extension for controlling HTML video and audio volume on the page you are viewing. Its compact black-and-white controller stays over the page until you dismiss it.
 
