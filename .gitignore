@@ -1,0 +1,8 @@
+node_modules/
+dist/
+artifacts/
+*.zip
+*.xpi
+.DS_Store
+playwright-report/
+test-results/

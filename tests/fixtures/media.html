@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>VolumeSilencer Media Test</title>
+    <style>
+      * { box-sizing: border-box; }
+      body { min-height: 100vh; margin: 0; color: #f4f4f4; background: #171717; font-family: Georgia, serif; }
+      header { display: flex; align-items: center; justify-content: space-between; min-height: 70px; padding: 0 5vw; border-bottom: 1px solid #333; font-family: sans-serif; }
+      header span:last-child { color: #888; font-size: 13px; }
+      main { display: grid; grid-template-columns: minmax(0, 1fr) 310px; gap: 42px; width: min(1120px, 90vw); margin: 60px auto; }
+      h1 { max-width: 700px; margin: 0 0 22px; font-size: clamp(46px, 7vw, 88px); font-weight: 500; line-height: .95; }
+      p { max-width: 620px; color: #aaa; font-family: sans-serif; font-size: 17px; line-height: 1.7; }
+      video { width: 100%; min-height: 260px; margin-top: 30px; border: 1px solid #383838; border-radius: 6px; background: #090909; }
+      aside { align-self: start; padding: 24px; border: 1px solid #333; border-radius: 6px; background: #111; font-family: sans-serif; }
+      aside strong { display: block; margin-bottom: 10px; }
+      aside span { color: #888; line-height: 1.5; }
+    </style>
+  </head>
+  <body>
+    <header><strong>Night Signal</strong><span>Independent video journal</span></header>
+    <main>
+      <section>
+        <h1>A calmer way to control the noise.</h1>
+        <p>This deterministic fixture contains an HTML video element so the real unpacked VolumeSilencer extension can be tested without publishing private browsing content.</p>
+        <video controls aria-label="Test video"></video>
+      </section>
+      <aside><strong>Now playing</strong><span>Field recording 08 — a deliberately quiet test page.</span></aside>
+    </main>
+  </body>
+</html>

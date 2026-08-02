@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="dark">
+    <title>VolumeSilencer Settings</title>
+    <link rel="stylesheet" href="options.css">
+  </head>
+  <body>
+    <header class="app-header">
+      <a class="brand" href="https://labs.wiplash.ai/volume-silencer/" target="_blank" rel="noreferrer">
+        <img src="../assets/brand-mark.svg" alt="">
+        <span>VolumeSilencer</span>
+      </a>
+      <span class="local-label">Local settings</span>
+    </header>
+
+    <main>
+      <section class="intro" aria-labelledby="pageTitle">
+        <p>Settings</p>
+        <h1 id="pageTitle">Your volume, your rules.</h1>
+        <span>Click the toolbar icon on any normal webpage to show or hide the on-page controller.</span>
+      </section>
+
+      <form id="settingsForm" class="settings-form">
+        <section class="setting-row">
+          <div>
+            <label for="defaultVolume">Default page volume</label>
+            <p>Used when VolumeSilencer has not remembered a level for the current website.</p>
+          </div>
+          <div class="volume-setting">
+            <output id="defaultVolumeValue" for="defaultVolume">100%</output>
+            <input id="defaultVolume" name="defaultVolume" type="range" min="0" max="100" step="1" value="100">
+          </div>
+        </section>
+
+        <section class="setting-row">
+          <div>
+            <span class="setting-label">Widget side</span>
+            <p>Choose the starting corner. You can drag the widget anywhere afterward.</p>
+          </div>
+          <div class="segment" role="radiogroup" aria-label="Widget side">
+            <label><input type="radio" name="widgetSide" value="left"><span>Left</span></label>
+            <label><input type="radio" name="widgetSide" value="right" checked><span>Right</span></label>
+          </div>
+        </section>
+
+        <section class="setting-row">
+          <div>
+            <label for="rememberBySite">Remember volume by website</label>
+            <p>Keep each website's last selected volume in extension storage on this browser.</p>
+          </div>
+          <label class="toggle"><input id="rememberBySite" name="rememberBySite" type="checkbox" checked><span></span></label>
+        </section>
+
+        <section class="setting-row">
+          <div>
+            <label for="showMediaCount">Show media count</label>
+            <p>Display how many HTML video and audio players VolumeSilencer found on the page.</p>
+          </div>
+          <label class="toggle"><input id="showMediaCount" name="showMediaCount" type="checkbox" checked><span></span></label>
+        </section>
+
+        <section class="setting-row">
+          <div>
+            <label for="resetOnClose">Restore volume when the widget closes</label>
+            <p>Return the current page to full volume whenever you dismiss the controller.</p>
+          </div>
+          <label class="toggle"><input id="resetOnClose" name="resetOnClose" type="checkbox"><span></span></label>
+        </section>
+
+        <section class="storage-row">
+          <div>
+            <span class="setting-label">Saved website controls</span>
+            <p id="savedSiteSummary">No websites saved.</p>
+          </div>
+          <button id="clearSavedSites" type="button">Clear saved sites</button>
+        </section>
+      </form>
+
+      <section class="privacy-note">
+        <strong>No analytics. No account. No remote requests.</strong>
+        <p>VolumeSilencer reads media elements and tab audio state only to perform controls you request. Settings stay in your browser.</p>
+      </section>
+    </main>
+
+    <footer>
+      <span>Open source under the MIT License</span>
+      <a href="https://wiplash.ai/" target="_blank" rel="noreferrer">Produced by Wiplash.ai</a>
+    </footer>
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+    <script src="options.js"></script>
+  </body>
+</html>
