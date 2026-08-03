@@ -8,12 +8,22 @@ const sharedEntries = ["background.js", "content", "options", "assets", "LICENSE
 const baseManifest = JSON.parse(await readFile(path.join(projectRoot, "manifest.json"), "utf8"));
 
 await rm(distRoot, { recursive: true, force: true });
-await Promise.all([buildChromium(), buildFirefox()]);
+await Promise.all([buildChromium(), buildOpera(), buildFirefox()]);
 
 async function buildChromium() {
   const target = path.join(distRoot, "chrome");
   await copyShared(target);
   const manifest = structuredClone(baseManifest);
+  delete manifest.browser_specific_settings;
+  delete manifest.background.scripts;
+  await writeFile(path.join(target, "manifest.json"), `${JSON.stringify(manifest, null, 2)}\n`);
+}
+
+async function buildOpera() {
+  const target = path.join(distRoot, "opera");
+  await copyShared(target);
+  const manifest = structuredClone(baseManifest);
+  manifest.short_name = "VolSilencer";
   delete manifest.browser_specific_settings;
   delete manifest.background.scripts;
   await writeFile(path.join(target, "manifest.json"), `${JSON.stringify(manifest, null, 2)}\n`);
@@ -36,4 +46,4 @@ async function copyShared(target) {
   )));
 }
 
-console.log("Built Chrome/Edge/Opera and Firefox packages in dist/.");
+console.log("Built Chrome/Edge, Opera, and Firefox packages in dist/.");

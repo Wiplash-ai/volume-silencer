@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#050505">
+    <meta name="description" content="VolumeSilencer gives you precise page-volume and tab-mute controls in a private browser widget.">
+    <meta property="og:title" content="VolumeSilencer | Control noisy pages">
+    <meta property="og:description" content="Set page volume, mute tabs, and quiet a whole browser window without sending your activity anywhere.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://labs.wiplash.ai/volume-silencer/">
+    <meta property="og:image" content="https://labs.wiplash.ai/volume-silencer/assets/widget-demo.png">
+    <link rel="canonical" href="https://labs.wiplash.ai/volume-silencer/">
+    <link rel="icon" href="assets/brand-mark.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="styles.css">
+    <title>VolumeSilencer | Precise Browser Volume Controls</title>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="/" aria-label="Wiplash Labs home">
+        <img src="assets/brand-mark.svg" alt="">
+        <span>VolumeSilencer</span>
+      </a>
+      <nav aria-label="Product navigation">
+        <a href="#controls">Controls</a>
+        <a href="#privacy">Privacy</a>
+        <a class="source-link" href="https://github.com/Wiplash-ai/volume-silencer" target="_blank" rel="noreferrer">Source</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <p class="kicker">A browser utility by Wiplash Labs</p>
+          <h1 id="hero-title">Turn down the page.<br>Not your whole day.</h1>
+          <p class="hero-description">Drop HTML media below 1%, amplify compatible players up to 500%, mute the active tab, or quiet every other tab from one compact on-page widget.</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#preview">See it work</a>
+            <a class="button button-secondary" href="https://github.com/Wiplash-ai/volume-silencer" target="_blank" rel="noreferrer">View source</a>
+          </div>
+          <div class="browser-list" aria-label="Supported browsers">
+            <span>Chrome</span><span>Edge</span><span>Firefox</span><span>Opera</span>
+          </div>
+        </div>
+        <div class="hero-visual" aria-label="VolumeSilencer controller preview">
+          <div class="demo-tabs" role="tablist" aria-label="Preview website">
+            <button class="is-active" type="button" role="tab" aria-selected="true" data-platform="youtube"><img src="assets/youtube.svg" alt="">YouTube</button>
+            <button type="button" role="tab" aria-selected="false" data-platform="instagram"><img src="assets/instagram.svg" alt="">Instagram</button>
+            <button type="button" role="tab" aria-selected="false" data-platform="tiktok"><img src="assets/tiktok.svg" alt="">TikTok</button>
+          </div>
+          <div class="demo-browser" id="demoBrowser" data-platform="youtube">
+            <header class="demo-site-header">
+              <button class="demo-menu" type="button" aria-label="Menu"><i></i><i></i><i></i></button>
+              <strong id="demoPlatformName"><img id="demoPlatformLogo" src="assets/youtube.svg" alt=""><span>YouTube</span></strong>
+              <div class="demo-search"><span id="demoSearchLabel">Search</span><i></i></div>
+              <div class="demo-header-actions" aria-hidden="true"><span class="demo-create">+</span><span class="demo-bell"></span><span class="demo-avatar"><img id="demoViewerAvatar" alt="" hidden></span></div>
+            </header>
+            <div class="demo-content">
+              <aside class="demo-rail" aria-hidden="true">
+                <span><i></i><b id="demoNavOne">Home</b></span>
+                <span><i></i><b id="demoNavTwo">Shorts</b></span>
+                <span><i></i><b id="demoNavThree">Subscriptions</b></span>
+                <span><i></i><b id="demoNavFour">You</b></span>
+              </aside>
+              <div class="demo-post">
+                <div class="demo-video"><canvas id="demoVideo" aria-label="Animated night drive video preview"></canvas><span class="demo-play">Playing</span><span class="demo-time">0:42 / 1:30</span><div class="demo-progress"><i></i></div><div class="demo-reel-actions" aria-hidden="true"><i>♥</i><i>12K</i><i>↗</i><i>⋯</i></div></div>
+                <h3 id="demoVideoTitle">Building a midnight synth in 90 seconds</h3>
+                <p><span class="demo-channel"><img id="demoChannelAvatar" alt="" hidden></span><strong id="demoChannelName">Night Signal Studio</strong><small id="demoChannelMeta">184K subscribers</small><button type="button" id="demoFollowLabel">Subscribe</button></p>
+                <div class="demo-engagement" aria-hidden="true"><span>♡ <b id="demoLikeCount">12K</b></span><span>↗ Share</span><span>＋ Save</span><span>•••</span></div>
+              </div>
+              <aside class="demo-related" aria-hidden="true"><span><i></i><b>Analog rituals</b><small>12K views</small></span><span><i></i><b>Patch notes</b><small>8.6K views</small></span><span><i></i><b>After midnight</b><small>21K views</small></span></aside>
+            </div>
+            <div class="demo-toast">Page volume set to <strong id="demoToastValue">0.70%</strong></div>
+            <div class="demo-widget" aria-label="VolumeSilencer widget mockup">
+              <header><img src="assets/brand-mark.svg" alt=""><strong>VolumeSilencer</strong><span>night.signal</span><b>×</b></header>
+              <div class="demo-widget-body">
+                <p><span>Page volume</span><strong id="demoVolumeValue">0.70%</strong></p>
+                <div class="demo-modes"><i class="active" data-demo-mode="stealth">Stealth</i><i data-demo-mode="normal">Normal</i><i data-demo-mode="blunt">Blunt</i></div>
+                <div class="demo-slider"><i></i><b></b></div>
+                <div class="demo-presets"><i data-demo-preset>0</i><i data-demo-preset>.25</i><i data-demo-preset>.50</i><i class="active" data-demo-preset>.75</i><i data-demo-preset>1</i></div>
+                <div class="demo-actions"><strong>Mute tab</strong><span>Reset</span></div>
+              </div>
+              <footer><span>Advanced</span><small>3 tabs⌄</small></footer>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="controls" class="control-band" aria-labelledby="controls-title">
+        <div class="section-intro">
+          <p class="kicker">Three ranges, one control</p>
+          <h2 id="controls-title">Quiet exactly what you mean to quiet.</h2>
+        </div>
+        <div class="control-list">
+          <article><span>01</span><div><h3>Stealth mode</h3><p>Fine-tune stubbornly loud media between 0% and 1% in precise 0.05-point steps.</p></div></article>
+          <article><span>02</span><div><h3>Normal mode</h3><p>Use the familiar 0–100% range with quick presets for everyday listening.</p></div></article>
+          <article><span>03</span><div><h3>Blunt mode</h3><p>Amplify compatible HTML media up to 500% using local browser audio processing.</p></div></article>
+          <article><span>04</span><div><h3>Advanced window control</h3><p>Expand only when you need to mute this tab, quiet the others, or silence the window.</p></div></article>
+        </div>
+      </section>
+
+      <section id="preview" class="preview-band">
+        <div class="preview-image">
+          <img src="assets/settings.png" alt="VolumeSilencer settings screen">
+        </div>
+        <div class="preview-copy">
+          <p class="kicker">Set it once</p>
+          <h2>It remembers the useful parts.</h2>
+          <p>Choose a default volume, remember levels by website, move the compact widget where it belongs, and expand window controls only when needed.</p>
+          <ul>
+            <li>Automatic control for media added after page load</li>
+            <li>Draggable widget with left or right starting position</li>
+            <li>Optional website-specific volume memory</li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="privacy" class="privacy-band">
+        <div>
+          <p class="kicker">Private by default</p>
+          <h2>Your browsing stays in your browser.</h2>
+        </div>
+        <div class="privacy-copy">
+          <p>VolumeSilencer has no analytics, account, advertising SDK, backend, or remote API. Settings and saved website volume levels remain in extension storage on your device.</p>
+          <a href="privacy/">Read the privacy policy</a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <a href="/">Wiplash Labs</a>
+      <p>Produced by <a href="https://wiplash.ai/">Wiplash.ai</a></p>
+      <nav aria-label="Footer navigation"><a href="privacy/">Privacy</a><a href="support/">Support</a><a href="https://github.com/Wiplash-ai/volume-silencer">GitHub</a></nav>
+    </footer>
+    <script src="site.js" defer></script>
+  </body>
+</html>

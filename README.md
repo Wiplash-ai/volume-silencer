@@ -13,12 +13,15 @@ VolumeSilencer is a private, local-only browser extension for controlling HTML v
 ## What it does
 
 - Adjusts HTML video and audio volume from 0–100 on the current page.
+- Uses **Stealth mode** for precise 0–1% control when ordinary volume steps are still too loud.
+- Uses **Blunt mode** to amplify compatible HTML media up to 500% with the browser's local Web Audio API.
 - Mutes or unmutes the current browser tab, including page audio not exposed through a normal media element.
 - Quiets every other tab in the current window while leaving the active tab audible.
 - Mutes every tab in the current window and restores the previous mute state afterward.
 - Finds media added after page load and applies the selected level automatically.
 - Remembers volume by website when enabled.
 - Keeps its draggable on-page widget visible for websites where you opened it.
+- Keeps current-window controls behind an expandable Advanced row so the everyday widget stays compact.
 - Works from the toolbar or with `Ctrl+Shift+M` (`Command+Shift+M` on macOS).
 
 ## Privacy
@@ -36,6 +39,8 @@ Read [PRIVACY.md](PRIVACY.md) for the complete policy.
 - `http://*/*` and `https://*/*`: finds and controls HTML video/audio elements and renders the optional widget on normal webpages.
 
 VolumeSilencer cannot run on browser-owned pages such as `chrome://`, `edge://`, `about:`, or extension-store pages.
+
+Blunt mode works with compatible HTML media. Some protected or cross-origin players prevent browser audio processing; VolumeSilencer falls back to the normal 100% ceiling on those players instead of requesting screen or tab-capture access.
 
 ## Local development
 

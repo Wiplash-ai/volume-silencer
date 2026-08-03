@@ -2,6 +2,7 @@
 
 const SETTINGS_KEY = "volumeSilencerSettings";
 const SESSION_KEY = "volumeSilencerWindowSessions";
+const MAX_VOLUME = 500;
 const DEFAULT_SETTINGS = Object.freeze({
   defaultVolume: 100,
   rememberBySite: true,
@@ -14,13 +15,21 @@ const DEFAULT_SETTINGS = Object.freeze({
 });
 
 const memorySession = {};
+const ACTION_ICONS = Object.freeze({
+  16: "assets/icons/icon16.png",
+  32: "assets/icons/icon32.png"
+});
+
+refreshActionIcon();
 
 chrome.runtime.onInstalled.addListener(() => {
   ensureSettings();
+  refreshActionIcon();
 });
 
 chrome.runtime.onStartup.addListener(() => {
   ensureSettings();
+  refreshActionIcon();
 });
 
 chrome.action.onClicked.addListener((tab) => {
@@ -255,7 +264,9 @@ function isSafeHostname(value) {
 
 function clampVolume(value) {
   const number = Number(value);
-  return Number.isFinite(number) ? Math.min(100, Math.max(0, Math.round(number))) : 100;
+  return Number.isFinite(number)
+    ? Math.min(MAX_VOLUME, Math.max(0, Math.round(number * 100) / 100))
+    : 100;
 }
 
 function finiteNumberOrNull(value) {
@@ -315,6 +326,10 @@ function storageSet(area, values) {
 
 function openOptionsPage() {
   return new Promise((resolve) => chrome.runtime.openOptionsPage(resolve));
+}
+
+function refreshActionIcon() {
+  return new Promise((resolve) => chrome.action.setIcon({ path: ACTION_ICONS }, resolve));
 }
 
 function showActionError(tabId) {

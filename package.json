@@ -1,11 +1,12 @@
 {
   "name": "volume-silencer-extension",
-  "version": "3.0.0",
+  "version": "3.1.1",
   "private": true,
   "type": "module",
   "scripts": {
     "test": "node --test tests/*.test.mjs",
     "build": "node scripts/build.mjs",
+    "capture:store": "node scripts/capture-store-assets.mjs",
     "package:stores": "node scripts/package-stores.mjs",
     "verify:extension": "npm run build && node scripts/verify-extension.mjs"
   },

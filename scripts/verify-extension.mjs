@@ -24,7 +24,7 @@ const context = await chromium.launchPersistentContext(userDataDir, {
     `--disable-extensions-except=${extensionPath}`,
     `--load-extension=${extensionPath}`
   ],
-  viewport: { width: 1440, height: 900 }
+  viewport: { width: 1280, height: 800 }
 });
 
 try {
@@ -63,6 +63,24 @@ try {
   await page.waitForFunction(() => document.querySelector("video").volume === 0.25);
   console.log("Page media volume control works.");
 
+  await worker.evaluate(async () => {
+    const tabs = await chrome.tabs.query({ currentWindow: true });
+    const target = tabs.find((tab) => tab.url && tab.url.endsWith("/"));
+    await chrome.tabs.sendMessage(target.id, { type: "APPLY_MEDIA_STATE", payload: { volume: 0.25 } });
+  });
+  await page.waitForFunction(() => document.querySelector("video").volume === 0.0025);
+  console.log("Stealth mode preserves sub-1% precision.");
+
+  const bluntState = await worker.evaluate(async () => {
+    const tabs = await chrome.tabs.query({ currentWindow: true });
+    const target = tabs.find((tab) => tab.url && tab.url.endsWith("/"));
+    await chrome.tabs.sendMessage(target.id, { type: "APPLY_MEDIA_STATE", payload: { volume: 250 } });
+    return chrome.tabs.sendMessage(target.id, { type: "GET_MEDIA_STATE" });
+  });
+  if (bluntState.volume !== 250) throw new Error("Blunt mode did not preserve the selected gain.");
+  await page.waitForFunction(() => document.querySelector("video").volume === 1);
+  console.log("Blunt mode routes compatible media through amplified gain.");
+
   const muted = await worker.evaluate(async () => {
     const tabs = await chrome.tabs.query({ currentWindow: true });
     const target = tabs.find((tab) => tab.url && tab.url.endsWith("/"));
@@ -95,10 +113,20 @@ try {
   });
   console.log("Window tab muting and restoration work.");
 
+  await worker.evaluate(async () => {
+    const tabs = await chrome.tabs.query({ currentWindow: true });
+    const target = tabs.find((tab) => tab.url && tab.url.endsWith("/"));
+    await chrome.tabs.sendMessage(target.id, { type: "APPLY_MEDIA_STATE", payload: { volume: 25 } });
+  });
+
   await new Promise((resolve) => setTimeout(resolve, 2000));
   await page.screenshot({
     path: path.join(root, "store-assets/screenshots/widget-demo.png"),
-    fullPage: true
+    fullPage: false
+  });
+  await page.screenshot({
+    path: path.join(root, "store-assets/screenshots/widget-detail.png"),
+    clip: { x: 620, y: 300, width: 610, height: 470 }
   });
   await page.setViewportSize({ width: 390, height: 844 });
   await page.screenshot({
@@ -107,13 +135,13 @@ try {
   });
   const extensionId = new URL(worker.url()).hostname;
   const optionsPage = await context.newPage();
-  await optionsPage.setViewportSize({ width: 1440, height: 1000 });
+  await optionsPage.setViewportSize({ width: 1280, height: 800 });
   await optionsPage.goto(`chrome-extension://${extensionId}/options/options.html`);
   await optionsPage.screenshot({
     path: path.join(root, "store-assets/screenshots/settings.png"),
-    fullPage: true
+    fullPage: false
   });
-  console.log("Verified widget, page volume, tab mute, window mute, and restoration.");
+  console.log("Verified widget, Stealth/Normal/Blunt volume, tab mute, window mute, and restoration.");
 } finally {
   await context.close();
   await new Promise((resolve) => server.close(resolve));
