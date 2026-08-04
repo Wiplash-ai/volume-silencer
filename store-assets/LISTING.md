@@ -57,6 +57,10 @@ https://labs.wiplash.ai/volume-silencer/support/
 
 https://labs.wiplash.ai/volume-silencer/privacy/
 
+## Product demo
+
+https://www.youtube.com/watch?v=fedabZFwxwo
+
 ## Submission assets
 
 - Chrome icon: `store-icon.png` (128x128)
