@@ -1,9 +1,9 @@
 {
   "manifest_version": 3,
-  "name": "VolumeSilencer - Tab Volume Control",
-  "short_name": "VolumeSilencer",
-  "version": "3.1.1",
-  "description": "Precisely quiet page media below 1%, amplify it up to 500%, and mute noisy tabs from a compact widget.",
+  "name": "Tab Volume Control & Booster - VolumeSilencer",
+  "short_name": "VolSilencer",
+  "version": "3.1.2",
+  "description": "Control page audio below 1%, boost compatible media up to 500%, mute tabs, and quiet other tabs from a private movable widget.",
   "homepage_url": "https://labs.wiplash.ai/volume-silencer/",
   "icons": {
     "16": "assets/icons/icon16.png",
