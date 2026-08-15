@@ -2,11 +2,21 @@
 
 ## Name
 
-VolumeSilencer - Tab Volume Control
+Tab Volume Control & Booster - VolumeSilencer
 
 ## Short description
 
-Precisely quiet page media below 1%, amplify compatible players up to 500%, and mute noisy tabs.
+Control page audio below 1%, boost compatible media up to 500%, mute tabs, and quiet other tabs from a private movable widget.
+
+## Search terms
+
+- `tab volume control`
+- `volume booster`
+- `sound booster`
+- `mute tabs`
+- `per tab volume`
+- `quiet browser audio`
+- `media volume control`
 
 ## Full description
 
@@ -56,6 +66,10 @@ https://labs.wiplash.ai/volume-silencer/support/
 ## Privacy
 
 https://labs.wiplash.ai/volume-silencer/privacy/
+
+## Product demo
+
+https://www.youtube.com/watch?v=fedabZFwxwo
 
 ## Submission assets
 
